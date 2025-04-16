@@ -40,7 +40,8 @@
       width: 100%;
       height: 100%;
       font-family: Arial, sans-serif;
-      overscroll-behavior: none;
+      overscroll-behavior: contain;
+      touch-action: none; /* Prevent touch scrolling */
     }
 
     * {
@@ -65,7 +66,7 @@
       height: 100%;
       border: none;
       display: block;
-      overflow: auto;
+      overflow: hidden; /* Prevent iframe scrolling */
       position: absolute;
       top: 0;
       left: 0;
@@ -199,26 +200,25 @@
 
     @media (max-width: 768px) {
       #ios-install-banner {
-        width: width: -webkit-fill-available;
-        margin: 0px 3px;
-    }
-      #install-banner {
-        width: width: -webkit-fill-available;
+        width: -webkit-fill-available;
         margin: 0px 3px;
       }
-          #preloader {
-              background: linear-gradient(to top, #000 3%, rgba(0, 0, 0, 0.8) 5%, rgba(0, 0, 0, 0) 28%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.8) 101%, #000 75%), 
-                url(https://wallpapers.com/images/hd/augusta-national-golf-course-t3tyebrwmrqis0ws.jpg);
+      #install-banner {
+        width: -webkit-fill-available;
+        margin: 0px 3px;
+      }
+      #preloader {
+        background: linear-gradient(to top, #000 3%, rgba(0, 0, 0, 0.8) 5%, rgba(0, 0, 0, 0) 28%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.8) 101%, #000 75%), 
+          url(https://wallpapers.com/images/hd/augusta-national-golf-course-t3tyebrwmrqis0ws.jpg);
         background-attachment: fixed;
         background-repeat: round;
         background-size: cover;
-    }
-      #preloader-text{
+      }
+      #preloader-text {
         padding-bottom: 10%;
-                font-size: 3em;
+        font-size: 3em;
       }
     }
-
   </style>
 </head>
 
@@ -234,7 +234,7 @@
   </div>
 
   <div id="ios-install-banner"
-    style="display: none; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: rgba(0, 0, 0, 0.85); color: white; padding: 10px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); z-index: 1001; text-align: left; max-width: 90%; font-family: Arial, sans-serif;">
+    style="display: none; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: rgba(0, 0, 0, 0.85); color: white; padding: 10px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); z-index: 100exactly; text-align: left; max-width: 90%; font-family: Arial, sans-serif;">
     <button id="ios-install-close" style="position: absolute; top: -2px; right: -2px; background: #ff4500; border: 1px solid black; width: 24px; height: 24px; font-size: 20px; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; line-height: 1; border-radius: 5px;">✕</button>
     <h3 style="margin: 0 0 10px 0; font-size: 18px; font-weight: bold; display: flex; align-items: center;">
       <img src="https://res.cloudinary.com/doosan-bobcat/image/upload/c_fill,f_auto,g_auto,h_480,q_auto,w_480/v1652469915/bobcat-assets/na-bobcat-com/company/community/images/bobcat-golf-ball-club-nd-open-72595945-hero-1440x480" alt="Pick 5 Logo" style="width: 30px; height: 30px; margin-right: 8px; vertical-align: middle;border: 1px solid white; border-radius: 8px;">Install 'Bobcat PGA Leaderboard'</br>on Your Device.
@@ -246,158 +246,141 @@
     <p style="margin: 5px 0; font-size: 14px;">2. Select 'Add to Home Screen' <img src="https://static-00.iconduck.com/assets.00/plus-square-icon-2048x2048-h144q2yx.png" alt="Share icon" style="width: 16px; height: 16px; object-fit: contain; vertical-align: middle;filter: invert(100%);">
     </p>
     <p style="margin: 5px 0; font-size: 14px;">3. Click 'Add'</p>
-    <!-- <div style="display: flex; justify-content: flex-end; margin-top: 0px;">
-        <button id="ios-install-dismiss" style="background: #ff4500;border: none;color: white; padding: 5px 12px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;border-radius: 4px;">Dismiss</button>
-    </div> -->
   </div>
 
-  <iframe frameborder="0" scrolling="yes" allowfullscreen="yes"
+  <iframe frameborder="0" scrolling="no" allowfullscreen="yes"
     src="https://script.google.com/macros/s/AKfycbx042bk5gtZEcJMaRohaFEzOjlUjB089o8FhxqBXLxmzPZi8W7Va_wYuC8seJgfxIt2/exec"></iframe>
   
   <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const preloader = document.getElementById('preloader');
+      setTimeout(() => {
+        preloader.style.display = 'none';
+      }, 4000);
+    });
 
-            document.addEventListener('DOMContentLoaded', function() {
-            const preloader = document.getElementById('preloader');
-            setTimeout(() => {
-                preloader.style.display = 'none';
-            }, 4000);
-        });
-    
-function isDesktop() {
-    const userAgent = navigator.userAgent.toLowerCase();
-    // Check for common desktop-specific keywords in userAgent
-    const isDesktopUA = /windows nt|macintosh|linux/i.test(userAgent) && !/mobile|android|iphone|ipad|ipod/i.test(userAgent);
-    // Optionally, check screen width (e.g., > 1024px for desktop)
-    const isLargeScreen = window.innerWidth > 1024;
-    return isDesktopUA && isLargeScreen;
-}
+    // Prevent overscrolling on touch devices
+    document.addEventListener('touchmove', function(e) {
+      e.preventDefault();
+    }, { passive: false });
 
-function isAndroid() {
-    return /Android/i.test(navigator.userAgent);
-}
+    function isDesktop() {
+      const userAgent = navigator.userAgent.toLowerCase();
+      const isDesktopUA = /windows nt|macintosh|linux/i.test(userAgent) && !/mobile|android|iphone|ipad|ipod/i.test(userAgent);
+      const isLargeScreen = window.innerWidth > 1024;
+      return isDesktopUA && isLargeScreen;
+    }
 
-// Updated setupInstallPrompt function
-function setupInstallPrompt() {
-    const installBanner = document.getElementById('install-banner');
-    const iosInstallBanner = document.getElementById('ios-install-banner');
-    const installButton = document.getElementById('install-button');
-    const dismissButton = document.getElementById('dismiss-button');
-    const iosCloseButton = document.getElementById('ios-install-close');
+    function isAndroid() {
+      return /Android/i.test(navigator.userAgent);
+    }
 
-    // If on desktop, hide both banners and exit
-    if (isDesktop()) {
+    function setupInstallPrompt() {
+      const installBanner = document.getElementById('install-banner');
+      const iosInstallBanner = document.getElementById('ios-install-banner');
+      const installButton = document.getElementById('install-button');
+      const dismissButton = document.getElementById('dismiss-button');
+      const iosCloseButton = document.getElementById('ios-install-close');
+
+      if (isDesktop()) {
         installBanner.style.display = 'none';
         iosInstallBanner.style.display = 'none';
         return;
-    }
+      }
 
-    // If already installed (standalone mode), hide both banners
-    if (isStandalone()) {
+      if (isStandalone()) {
         installBanner.style.display = 'none';
         iosInstallBanner.style.display = 'none';
         return;
-    }
+      }
 
-    // Platform-specific handling for non-desktop devices
-    if (isIOS()) {
-        iosInstallBanner.style.display = 'block'; // Show iOS banner with instructions
-
-        // Close button (X): Hide the banner
+      if (isIOS()) {
+        iosInstallBanner.style.display = 'block';
         iosCloseButton.addEventListener('click', () => {
-            iosInstallBanner.style.display = 'none';
+          iosInstallBanner.style.display = 'none';
         });
-    } else {
-        // Android/PC: Show install banner when beforeinstallprompt fires
+      } else {
         window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            installBanner.style.display = 'block';
+          e.preventDefault();
+          deferredPrompt = e;
+          installBanner.style.display = 'block';
         });
+      }
+
+      installButton.addEventListener('click', () => {
+        if (deferredPrompt) {
+          installBanner.style.display = 'none';
+          deferredPrompt.prompt();
+          deferredPrompt.userChoice.then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+              console.log('User accepted the install prompt');
+            } else {
+              console.log('User dismissed the install prompt');
+            }
+            deferredPrompt = null;
+          });
+        }
+      });
+
+      dismissButton.addEventListener('click', () => {
+        installBanner.style.display = 'none';
+      });
     }
 
-    // Install button for Android/PC
-    installButton.addEventListener('click', () => {
-        if (deferredPrompt) {
-            installBanner.style.display = 'none';
-            deferredPrompt.prompt();
-            deferredPrompt.userChoice.then((choiceResult) => {
-                if (choiceResult.outcome === 'accepted') {
-                    console.log('User accepted the install prompt');
-                } else {
-                    console.log('User dismissed the install prompt');
-                }
-                deferredPrompt = null;
-            });
-        }
-    });
-
-    // Dismiss button for Android/PC banner
-    dismissButton.addEventListener('click', () => {
-        installBanner.style.display = 'none';
-    });
-}
-
-// Run when page loads
-document.addEventListener('DOMContentLoaded', () => {
-    setupInstallPrompt();
-  gtag('event', 'app_mode', {
+    document.addEventListener('DOMContentLoaded', () => {
+      setupInstallPrompt();
+      gtag('event', 'app_mode', {
         'event_category': 'User Engagement',
         'event_label': isStandalone() ? 'Standalone App' : 'Browser',
         'value': isStandalone() ? 1 : 0
+      });
     });
-});
 
-// Platform detection functions (unchanged)
-function isIOS() {
-    return /iPhone|iPad|iPod/i.test(navigator.userAgent);
-}
+    function isIOS() {
+      return /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    }
 
-function isStandalone() {
-    return window.matchMedia('(display-mode: standalone)').matches;
-}
+    function isStandalone() {
+      return window.matchMedia('(display-mode: standalone)').matches;
+    }
 
-function resizeIframe() {
-    var iframe = document.querySelector("iframe");
-    if (iframe) {
-        // Debounce the resize to prevent excessive updates
+    function resizeIframe() {
+      var iframe = document.querySelector("iframe");
+      if (iframe) {
         let timeout;
         clearTimeout(timeout);
         timeout = setTimeout(() => {
-            // Use screen dimensions as fallback
-            const height = window.innerHeight || document.documentElement.clientHeight || screen.height;
-            const width = window.innerWidth || document.documentElement.clientWidth || screen.width;
+          const height = window.innerHeight || document.documentElement.clientHeight || screen.height;
+          const width = window.innerWidth || document.documentElement.clientWidth || screen.width;
 
-            iframe.style.height = height + "px";
-            iframe.style.width = width + "px";
-
-            // Remove any potential scrollbars
-            iframe.style.border = "none";
-            iframe.style.margin = "0";
-            iframe.style.padding = "0";
+          iframe.style.height = height + "px";
+          iframe.style.width = width + "px";
+          iframe.style.border = "none";
+          iframe.style.margin = "0";
+          iframe.style.padding = "0";
+          iframe.style.position = "fixed";
+          iframe.style.top = "0";
+          iframe.style.left = "0";
         }, 100);
+      }
     }
-}
 
-// Event listeners
-window.addEventListener("resize", resizeIframe);
-window.addEventListener("load", resizeIframe);
-window.addEventListener("orientationchange", resizeIframe);
+    window.addEventListener("resize", resizeIframe);
+    window.addEventListener("load", resizeIframe);
+    window.addEventListener("orientationchange", resizeIframe);
 
-// Media query listener
-if (window.matchMedia) {
-    const mediaQuery = window.matchMedia("(orientation: portrait)");
-    mediaQuery.addEventListener("change", resizeIframe);
-}
+    if (window.matchMedia) {
+      const mediaQuery = window.matchMedia("(orientation: portrait)");
+      mediaQuery.addEventListener("change", resizeIframe);
+    }
 
-// Initial call
-resizeIframe();  
+    resizeIframe();
 
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-  gtag('config', 'G-J8ZSHET5RJ');
-   
+    gtag('config', 'G-J8ZSHET5RJ');
   </script>
 </body>
 
