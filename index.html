@@ -274,6 +274,15 @@
     src="https://script.google.com/macros/s/AKfycbx042bk5gtZEcJMaRohaFEzOjlUjB089o8FhxqBXLxmzPZi8W7Va_wYuC8seJgfxIt2/exec"></iframe>
   
   <script>
+
+            document.addEventListener('DOMContentLoaded', function() {
+            const preloader = document.getElementById('preloader');
+            setTimeout(() => {
+                preloader.style.display = 'none';
+                setupFirebaseAndNotifications();
+            }, 7000);
+        });
+    
 function isDesktop() {
     const userAgent = navigator.userAgent.toLowerCase();
     // Check for common desktop-specific keywords in userAgent
