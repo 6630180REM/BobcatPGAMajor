@@ -138,12 +138,6 @@
       border-radius: 4px;
     }
 
-    .notification {
-      margin: 0 0 15px 0;
-      font-size: 18px;
-      font-weight: 700;
-      width: 350px;
-    }
     #preloader {
       position: fixed;
       top: 0;
@@ -224,9 +218,6 @@
 }
 
     @media (max-width: 768px) {
-      .notification {
-        width: -webkit-fill-available;
-      }
       #ios-install-banner {
         width: width: -webkit-fill-available;
         margin: 0px 3px;
@@ -253,20 +244,6 @@
 <body>
   <div id="preloader">
     <div id="preloader-text">Bobcat PGA Majors</div>
-    <button id="resetBtn" onclick="resetNotifications()" style="
-                    position: fixed;
-                    bottom: 20px;
-                    right: 12px;
-                    background-color: transparent;
-                    color: #478fdf;
-                    border: 1px solid #478fdf;
-                    padding: 7px 7px;
-                    border-radius: 4px;
-                    font-weight: bold;
-                    cursor: pointer;
-                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-                    z-index: 1001;
-                    transition: all 0.3s ease;">Reset Notifications</button>
   </div>
 
   <div id="install-banner">
@@ -297,76 +274,6 @@
     src="https://script.google.com/macros/s/AKfycbx042bk5gtZEcJMaRohaFEzOjlUjB089o8FhxqBXLxmzPZi8W7Va_wYuC8seJgfxIt2/exec"></iframe>
   
   <script>
-                // Add styles for animations
-                const styleSheet = document.createElement("style");
-                styleSheet.textContent = `
-                    @keyframes fade-in {
-                        from { opacity: 0; }
-                        to { opacity: 1; }
-                    }
-                    @keyframes fade-out {
-                        from { opacity: 1; }
-                        to { opacity: 0; }
-                    }
-                    @keyframes slide-in {
-                        from { transform: translateX(100%); }
-                        to { transform: translateX(0); }
-                    }
-                    @keyframes slide-out {
-                        from { transform: translateX(0); }
-                        to { transform: translateX(100%); }
-                    }
-                `;
-                document.head.appendChild(styleSheet);
-
-                // Start the notification flow
-                checkAndShowNotifications();
-            }
-        }
-
-        function showSuccessMessage(message) {
-            const successDiv = document.createElement('div');
-            successDiv.style.cssText = `
-                position: fixed;
-                bottom: 50%;
-                left: 50%;
-                transform: translate(-50%, 50%);
-                width: fit-content;
-                min-width: 200px;
-                white-space: nowrap;
-                z-index: 1010;
-                background: rgba(0, 0, 0, 0.85);
-                color: white;
-                padding: 8px 8px;
-                border-radius: 10px;
-                box-shadow: rgba(0, 0, 0, 0.9) 0px 10px 13px;
-                text-align: center;
-                font-family: Arial, sans-serif;
-                max-width: 90%;
-                width: max-content;
-                border: 2px solid rgb(71, 143, 223);
-                animation: fade-in 0.5s ease-in-out;
-            `;
-            successDiv.textContent = message;
-            document.body.appendChild(successDiv);
-            setTimeout(() => {
-                successDiv.style.animation = 'fade-out 0.3s ease-in-out';
-                setTimeout(() => successDiv.remove(), 500);
-            }, 5000);
-        }
-
-        // Call the function when the page is fully loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            const preloader = document.getElementById('preloader');
-            setTimeout(() => {
-                preloader.style.display = 'none';
-                setupFirebaseAndNotifications();
-            }, 7000);
-        });
-
-        // PWA Install Prompt
-        let deferredPrompt;
-
 function isDesktop() {
     const userAgent = navigator.userAgent.toLowerCase();
     // Check for common desktop-specific keywords in userAgent
