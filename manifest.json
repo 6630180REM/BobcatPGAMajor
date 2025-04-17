@@ -9,13 +9,13 @@
     "orientation": "portrait",
     "icons": [
         {
-            "src": "https://res.cloudinary.com/doosan-bobcat/image/upload/c_fill,f_auto,g_auto,h_480,q_auto,w_480/v1652469915/bobcat-assets/na-bobcat-com/company/community/images/bobcat-golf-ball-club-nd-open-72595945-hero-1440x480",
+            "src": "BobcatPGANew.png",
             "sizes": "192x192",
             "type": "image/png",
             "purpose": "any maskable"
         },
         {
-            "src": "https://res.cloudinary.com/doosan-bobcat/image/upload/c_fill,f_auto,g_auto,h_480,q_auto,w_480/v1652469915/bobcat-assets/na-bobcat-com/company/community/images/bobcat-golf-ball-club-nd-open-72595945-hero-1440x480",
+            "src": "BobcatPGANew.png",
             "sizes": "512x512",
             "type": "image/png",
             "purpose": "any maskable"
