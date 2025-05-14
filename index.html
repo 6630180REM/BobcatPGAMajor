@@ -277,7 +277,7 @@
     </div> -->
   </div>
 
-  <iframe frameborder="0" scrolling="yes" allowfullscreen="yes" viewport-fit="cover"
+  <iframe frameborder="0" scrolling="yes" allowfullscreen="yes"
     src="https://script.google.com/macros/s/AKfycbx042bk5gtZEcJMaRohaFEzOjlUjB089o8FhxqBXLxmzPZi8W7Va_wYuC8seJgfxIt2/exec"></iframe>
   
   <script>
@@ -289,14 +289,6 @@
             }, 5000);
         });
 
-    function setViewportHeight() {
-  const vh = window.innerHeight * 0.01;
-  document.documentElement.style.setProperty('--vh', `${vh}px`);
-}
-
-window.addEventListener('resize', setViewportHeight);
-window.addEventListener('orientationchange', setViewportHeight);
-setViewportHeight();
     
 function isDesktop() {
     const userAgent = navigator.userAgent.toLowerCase();
