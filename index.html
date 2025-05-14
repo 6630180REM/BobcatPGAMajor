@@ -213,7 +213,20 @@
   padding: constant(safe-area-inset-top) constant(safe-area-inset-right) constant(safe-area-inset-bottom) constant(safe-area-inset-left); /* iOS 11.0 */
   padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left); /* iOS 11.2 */
 }
-      
+    iframe {
+  overflow: hidden !important;
+  height: 100vh;
+  min-height: 100vh;
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+       position: relative; 
+        overflow: hidden;
+
+  padding: constant(safe-area-inset-top) constant(safe-area-inset-right) constant(safe-area-inset-bottom) constant(safe-area-inset-left);
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}  
 /*       html, body {
    height: calc(var(--vh, 1vh) * 100);
   margin: 0;
@@ -292,7 +305,7 @@
     </div> -->
   </div>
 
-  <iframe frameborder="0" scrolling="yes" allowfullscreen="yes"
+  <iframe frameborder="0" scrolling="yes" allowfullscreen="yes" viewport-fit="cover"
     src="https://script.google.com/macros/s/AKfycbx042bk5gtZEcJMaRohaFEzOjlUjB089o8FhxqBXLxmzPZi8W7Va_wYuC8seJgfxIt2/exec"></iframe>
   
   <script>
