@@ -203,7 +203,7 @@
 
     @media (max-width: 1100px) {
       html, body {
-  height: 100vh;
+   height: calc(var(--vh, 1vh) * 100);
   margin: 0;
   padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
   background-color: #f3f3f3;
@@ -250,6 +250,8 @@
 </head>
 
 <body>
+
+  
   <div id="preloader">
     <div id="preloader-text">PGA</br>CHAMPIONSHIP</div>
   </div>
@@ -289,6 +291,15 @@
                 preloader.style.display = 'none';
             }, 5000);
         });
+
+    function setViewportHeight() {
+  const vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+
+window.addEventListener('resize', setViewportHeight);
+window.addEventListener('orientationchange', setViewportHeight);
+setViewportHeight();
     
 function isDesktop() {
     const userAgent = navigator.userAgent.toLowerCase();
