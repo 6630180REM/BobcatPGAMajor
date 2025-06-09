@@ -3,8 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport"
-    content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="Bobcat PGA Majors">
@@ -151,7 +150,7 @@
       z-index: 9999;
       overflow: hidden;
       background: linear-gradient(to top, #000 3%, rgba(0, 0, 0, 0.8) 5%, rgba(0, 0, 0, 0) 7%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.8) 90%, #000 99%),
-        url(https://images.ctfassets.net/56u5qdsjym8c/3dyGS3Hj42Zw7PRGjIflul/8564a1dfd4c3f3fa478eb95b7f624160/Quail-Hollow-Wanamaker-Hero.jpg);
+        url(https://cf-images.us-east-1.prod.boltdns.net/v1/static/1918791248001/72ba1096-720f-4672-ab3d-6db20aa18c77/5ac371e2-e487-4a48-8009-7755f3b6ecae/1280x720/match/image.jpg);
       color: white;
       padding: 0px;
       background-attachment: fixed;
@@ -161,20 +160,21 @@
 
     #preloader-text {
       background: 50% 100% / 50% 50% no-repeat radial-gradient(ellipse at bottom, #00205b, transparent, transparent);
-      -webkit-background-clip: text;
-      background-clip: text;
+      -webkit-background-clip: text; 
+       background-clip: text;
       color: transparent;
       font-size: 7rem;
       /* font-family: "Source Sans Pro", sans-serif; */
-      animation: reveal 2000ms ease-in-out forwards 200ms, linear infinite 2000ms;
+/*       animation: reveal 2000ms ease-in-out forwards 200ms, linear infinite 2000ms; */
       font-weight: 900;
       white-space: nowrap;
       line-height: 1;
       text-align: center;
       position: relative;
       -webkit-text-stroke: 2px white;
+      animation: slow 3s ease-in-out forwards;
     }
-    #preloader-text::after {
+/*     #preloader-text::after {
       content: "";
       position: absolute;
       left: 50%;
@@ -186,9 +186,45 @@
       opacity: 0.9;
       transform: translateX(-50%) scale(1);
       pointer-events: none;
+} */
+    #preloader-text {
+  color: transparent; /* Keep if you're using background-clip/text effects */
+}
+    .top-text{
+      color: white;
+      -webkit-text-stroke: 4px #093b60;      
+    }
+    .us-text,
+.open-text {
+  display: inline;
+  font-family: inherit;
+}
+    .us-text {
+  color: #d02030;
 }
 
-    @keyframes reveal {
+.open-text {
+  color: #093b60;
+}
+  .course-text {
+    color: white;
+    font-size: 25px;
+    font-weight: 200;
+    width: 100%;
+    top: -62px;
+    position: relative;
+    }
+
+    @keyframes slow {
+  from {
+        opacity: 0;
+  }
+  to {
+        opacity: 1;
+  }
+}
+
+/*     @keyframes reveal {
       80% {
         letter-spacing: 8px;
       }
@@ -196,7 +232,7 @@
       100% {
         background-size: 300% 300%;
       }
-    }
+    } */
 
     @media (max-width: 1100px) {
       
@@ -210,17 +246,30 @@
       }
       #preloader {
         background: linear-gradient(to top, #000 3%, rgba(0, 0, 0, 0.8) 5%, rgba(0, 0, 0, 0) 28%, rgba(243, 243, 243, 0) 90%, rgba(243, 243, 243, 0.8) 96%, #f3f3f3 98%), 
-                    url(https://images.ctfassets.net/56u5qdsjym8c/3dyGS3Hj42Zw7PRGjIflul/8564a1dfd4c3f3fa478eb95b7f624160/Quail-Hollow-Wanamaker-Hero.jpg);
+                    url(https://cf-images.us-east-1.prod.boltdns.net/v1/static/1918791248001/72ba1096-720f-4672-ab3d-6db20aa18c77/5ac371e2-e487-4a48-8009-7755f3b6ecae/1280x720/match/image.jpg);
         background-attachment: fixed;
-        background-repeat: space;
+                background-repeat: unset;
         background-size: cover;
-        background-position: center;
+/*         background-position: center; */
+        background-position: calc(50% - 83px) center;
         background-blend-mode: hard-light;
     }
       #preloader-text{
         padding-bottom: 10%;
-                font-size: 3em;
+                font-size: 5em;
       }
+      .top-text {
+            -webkit-text-stroke: 3px #093b60;
+      }
+.course-text {
+    color: white;
+    font-size: 16px;
+    font-weight: 200;
+    width: 100%;
+    top: -50px;
+    position: relative;
+        -webkit-text-stroke: initial;
+}
     }
 
   </style>
@@ -230,7 +279,13 @@
 
   
   <div id="preloader">
-    <div id="preloader-text">PGA</br>CHAMPIONSHIP</div>
+    <div id="preloader-text">
+      <span class="top-text">125th</span>
+       </br>
+        <span class="us-text">US</span><span class="open-text">OPEN</span>
+        </br>
+        <span class="course-text">Oakmont Country Club • Oakmont, Pa. • June 12 - 15</span>
+    </div>
   </div>
 
   <div id="install-banner">
