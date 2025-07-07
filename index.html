@@ -70,7 +70,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background-color: black;
+       background-color: black;
     }
 
     #install-banner {
@@ -138,7 +138,8 @@
     }
 
     #preloader {
-      position: fixed;
+    display: none;
+/*       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
@@ -155,7 +156,7 @@
       padding: 0px;
       background-attachment: fixed;
       background-repeat: round;
-      background-size: cover;
+      background-size: cover; */
     }
 
     #preloader-text {
@@ -245,14 +246,32 @@
         margin: 0px 3px;
       }
       #preloader {
-        background: linear-gradient(to top, #000 3%, rgba(0, 0, 0, 0.8) 5%, rgba(0, 0, 0, 0) 28%, rgba(243, 243, 243, 0) 90%, rgba(243, 243, 243, 0.8) 96%, #f3f3f3 98%), 
+/*         background: linear-gradient(to top, #000 3%, rgba(0, 0, 0, 0.8) 5%, rgba(0, 0, 0, 0) 28%, rgba(243, 243, 243, 0) 90%, rgba(243, 243, 243, 0.8) 96%, #f3f3f3 98%), 
                     url(https://cf-images.us-east-1.prod.boltdns.net/v1/static/1918791248001/72ba1096-720f-4672-ab3d-6db20aa18c77/5ac371e2-e487-4a48-8009-7755f3b6ecae/1280x720/match/image.jpg);
         background-attachment: fixed;
                 background-repeat: unset;
         background-size: cover;
-/*         background-position: center; */
         background-position: calc(50% - 83px) center;
+        background-blend-mode: hard-light; */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    overflow: hidden;
+    color: white;
+    padding: 0px;
+        background: #04051b;
+        background-attachment: fixed;
+        background-repeat: repeat-x;
+        background-size: contain;
+        background-position: center calc(50% - 43px);
         background-blend-mode: hard-light;
+        background-image: url(https://raw.githubusercontent.com/BobcatPGAMajors/BobcatPGAMajors.github.io/refs/heads/main/The%20Open.png);
     }
       #preloader-text{
         padding-bottom: 10%;
@@ -279,13 +298,13 @@
 
   
   <div id="preloader">
-    <div id="preloader-text">
+<!--     <div id="preloader-text">
       <span class="top-text">125th</span>
        </br>
         <span class="us-text">US</span><span class="open-text">OPEN</span>
         </br>
         <span class="course-text">Oakmont Country Club • Oakmont, Pa. • June 12 - 15</span>
-    </div>
+    </div> -->
   </div>
 
   <div id="install-banner">
